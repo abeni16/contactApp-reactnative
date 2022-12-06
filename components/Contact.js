@@ -12,30 +12,21 @@ import {
 import { db, deleteDoc } from "../firebase";
 const avatar = require("../assets/favicon.png");
 const Contact = (props) => {
-  const deleteContact = async () => {
-    try {
-      await deleteDoc(doc(db, "contact", props.id));
-      props.getContacts();
-      console.log(props.id);
-    } catch (error) {
-      console.log(first);
-    }
+  const onPress = () => {
+    props.navigation.navigate("ContactDetail");
   };
   return (
-    <View style={styles.item}>
-      <View style={styles.avatardiv}>
-        <Image source={avatar} style={styles.avatar} />
+    <Pressable onPress={onPress}>
+      <View style={styles.item}>
+        <View style={styles.avatardiv}>
+          <Image source={avatar} style={styles.avatar} />
+        </View>
+        <View>
+          <Text style={styles.name}>{props.name}</Text>
+          <Text style={styles.phone}>{props.phone}</Text>
+        </View>
       </View>
-      <View>
-        <Text style={styles.name}>{props.name}</Text>
-        <Text style={styles.phone}>{props.phone}</Text>
-      </View>
-      <View>
-        <Pressable onPress={deleteContact}>
-          <Image source={avatar} on style={styles.avatar} />
-        </Pressable>
-      </View>
-    </View>
+    </Pressable>
   );
 };
 

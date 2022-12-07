@@ -9,24 +9,20 @@ import {
   Image,
   Pressable,
 } from "react-native";
-import { db, deleteDoc } from "../firebase";
-const avatar = require("../assets/favicon.png");
-const Contact = (props) => {
+const avatar = require("../assets/person.png");
+const Detail = (props) => {
   return (
-    <View style={styles.item}>
-      <View style={styles.avatardiv}>
-        <Image source={avatar} style={styles.avatar} />
+    <>
+      <View style={styles.item}>
+        <View style={styles.avatardiv}>
+          <Image source={avatar} style={styles.avatar} />
+        </View>
       </View>
-      <View>
+      <View style={styles.detail}>
         <Text style={styles.name}>{props.name}</Text>
         <Text style={styles.phone}>{props.phone}</Text>
       </View>
-      <View>
-        <Pressable onPress={deleteContact}>
-          <Image source={avatar} on style={styles.avatar} />
-        </Pressable>
-      </View>
-    </View>
+    </>
   );
 };
 
@@ -38,29 +34,24 @@ const styles = StyleSheet.create({
   item: {
     backgroundColor: "#f2f2ff",
     padding: 25,
+
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     marginVertical: 8,
     marginHorizontal: 16,
     justifyContent: "space-between",
   },
   name: {
-    fontSize: 25,
+    fontSize: 60,
   },
   phone: {
-    fontSize: 12,
+    fontSize: 40,
+    color: "green",
   },
-  header: {
-    display: "flex",
 
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 40,
-    color: "yellow",
-  },
   avatar: {
-    height: 30,
-    width: 30,
+    height: 300,
+    width: 300,
 
     borderRadius: 20,
   },
@@ -69,4 +60,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Contact;
+export default Detail;

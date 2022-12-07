@@ -11,6 +11,7 @@ import {
   TextInput,
   Button,
   ActivityIndicator,
+  TouchableOpacity,
 } from "react-native";
 import Contact from "../components/Contact";
 import { db, collection, addDoc, getDocs } from "../firebase";
@@ -54,22 +55,32 @@ const Home = (props) => {
 
   useEffect(() => {
     getContacts();
-  }, []);
+  }, [contacts]);
 
   return (
     <SafeAreaView style={styles.container}>
+      <TextInput
+        textContentType="search"
+        style={styles.input}
+        placeholder="contact name"
+        value={name}
+        onChangeText={(text) => setName(text)}
+      />
       {contacts.length > 0 ? (
         <FlatList
           ListHeaderComponentStyle={styles.header}
           data={contacts}
           renderItem={({ item }) => (
-            <Contact
-              id={item.id}
-              name={item.name}
-              phone={item.phone}
-              getContacts={getContacts}
-              navigation={props.navigation}
-            />
+            <TouchableOpacity
+              onPress={() => props.navigation.navigate("ContactDetail", item)}
+            >
+              <Contact
+                id={item.id}
+                name={item.name}
+                phone={item.phone}
+                getContacts={getContacts}
+              />
+            </TouchableOpacity>
           )}
           keyExtractor={(item) => item.id}
         />

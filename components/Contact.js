@@ -8,25 +8,21 @@ import {
   StatusBar,
   Image,
   Pressable,
+  TouchableOpacity,
 } from "react-native";
-import { db, deleteDoc } from "../firebase";
-const avatar = require("../assets/favicon.png");
+import Detail from "./Detail";
+const avatar = require("../assets/person.png");
 const Contact = (props) => {
-  const onPress = () => {
-    props.navigation.navigate("ContactDetail");
-  };
   return (
-    <Pressable onPress={onPress}>
-      <View style={styles.item}>
-        <View style={styles.avatardiv}>
-          <Image source={avatar} style={styles.avatar} />
-        </View>
-        <View>
-          <Text style={styles.name}>{props.name}</Text>
-          <Text style={styles.phone}>{props.phone}</Text>
-        </View>
+    <View style={styles.item}>
+      <View style={styles.avatardiv}>
+        <Image source={avatar} style={styles.avatar} />
       </View>
-    </Pressable>
+      <View>
+        <Text style={styles.name}>{props.name}</Text>
+        <Text style={styles.phone}>{props.phone}</Text>
+      </View>
+    </View>
   );
 };
 
